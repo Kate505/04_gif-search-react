@@ -4,9 +4,10 @@ import { AddCategory } from "./components/AddCategory"
 export const GiftExpertApp = () => {
     const [categories, setCategories] = useState( ['Super Heroes', 'Cars'] )
 
-    const onAddCategory = () => {
-        //setCategories(cat => [...categories, 'Video Games'])
-        setCategories(['Video Games', ...categories])
+    const onAddCategory = ( newCategory ) => {
+        //console.log(newCategory);
+        setCategories(cat => [newCategory, ...cat])
+        //setCategories([ newCategory, ...categories])
     }
   return (
     <>
@@ -14,7 +15,10 @@ export const GiftExpertApp = () => {
     <h1>Gift Expert App</h1>
 
     {/*Input*/}
-    <AddCategory setCategories={ setCategories } />
+    <AddCategory
+        //setCategories={ setCategories } 
+        onNewCategory = { value => onAddCategory(value) }
+    />
     
     {/*Gif List*/}
     <ol>
