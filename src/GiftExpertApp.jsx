@@ -6,7 +6,7 @@ export const GiftExpertApp = () => {
 
     const onAddCategory = () => {
         //setCategories(cat => [...categories, 'Video Games'])
-        setCategories([...categories, 'Video Games'])
+        setCategories(['Video Games', ...categories])
     }
   return (
     <>
@@ -14,8 +14,7 @@ export const GiftExpertApp = () => {
     <h1>Gift Expert App</h1>
 
     {/*Input*/}
-    <AddCategory setCategories/>
-    <button onClick={onAddCategory}>Agregar</button>
+    <AddCategory setCategories={ setCategories } />
     
     {/*Gif List*/}
     <ol>
