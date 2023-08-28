@@ -1,29 +1,22 @@
-import { useState, useEffect } from "react";
-import { getGifs } from "../helpers/getGifs";
+import { useFetchGifts } from "../hooks/useFetchGifts";
 import { GifGridItem } from "./GifGridItem";
 
 export const GifGrid = ({ category }) => {
 
-  const [images, setImages] = useState([]);
-
-  const getImages = async () => {
-    const newImages = await getGifs(category);
-    setImages(newImages);
-  }
-
-  useEffect(() => {
-    getImages();
-  }, [])
+  const { images, isLoading} = useFetchGifts( category );
 
   return (
     <>
-      <h3>{category}</h3>
+      <h3>{ category }</h3>
+      {
+        isLoading && ( <h1> Cargando... </h1>)
+      }
 
       <div className="card-grid">
         {
-          images.map( (gif) => (
-            <GifGridItem key={gif.id}
-            { ...gif } //esto se llama spread properties
+          images.map( (image) => (
+            <GifGridItem key={image.id}
+            { ...image } //esto se llama spread properties
             />
           ))
         }
